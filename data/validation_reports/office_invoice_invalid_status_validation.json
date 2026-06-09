@@ -1,0 +1,18 @@
+{
+    "source_file": "office_invoice_invalid_status.pdf",
+    "invoice_number": "OFF-7788",
+    "supplier_name": "Office Supplies Direct",
+    "validation_status": "warning",
+    "summary": {
+        "total_issues": 1,
+        "high_risk_issues": 0,
+        "medium_risk_issues": 1
+    },
+    "issues": [
+        {
+            "field": "payment_status",
+            "severity": "medium",
+            "message": "Payment status 'Processing' is not one of: paid, unpaid, pending, overdue."
+        }
+    ]
+}

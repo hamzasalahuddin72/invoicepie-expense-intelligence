@@ -1,0 +1,12 @@
+{
+    "source_file": "hotel_invoice_001_copy.pdf",
+    "invoice_number": "INV-1001",
+    "supplier_name": "ABC Hotel Ltd",
+    "validation_status": "passed",
+    "summary": {
+        "total_issues": 0,
+        "high_risk_issues": 0,
+        "medium_risk_issues": 0
+    },
+    "issues": []
+}

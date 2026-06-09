@@ -1,5 +1,5 @@
 ﻿{
-    "record_count": 3,
+    "record_count": 6,
     "match_count": 1,
     "matches": [
         {
@@ -21,7 +21,7 @@
                 "source_file": "hotel_invoice_001.pdf"
             },
             "record_b": {
-                "record_file": "hotel_invoice_001_duplicate.json",
+                "record_file": "hotel_invoice_001_copy.json",
                 "supplier_name": "ABC Hotel Ltd",
                 "invoice_number": "INV-1001",
                 "invoice_date": "2026-06-04",

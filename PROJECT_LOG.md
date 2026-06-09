@@ -18,20 +18,20 @@ The aim of this project is to build a realistic end-to-end document intelligence
 
 ## Current Project Status
 
-InvoicePie currently has a working local Python environment, a generated fake sample invoice PDF, PDF text extraction using PyMuPDF, structured invoice parsing into JSON, invoice validation report generation, duplicate invoice detection, SQLite database storage, a Streamlit dashboard for expense insights, and improved GitHub project documentation.
+InvoicePie currently has a working local Python environment, a multi-invoice sample dataset, PDF text extraction using PyMuPDF, batch invoice parsing into JSON, batch validation report generation, duplicate invoice detection, SQLite database storage, a Streamlit dashboard for expense insights, and improved GitHub project documentation.
 
 The current completed pipeline is:
 
 ```text
-Sample invoice PDF
+Multiple sample invoice PDFs
 ↓
 PDF text extraction
 ↓
-Invoice field parsing
+Batch invoice field parsing
 ↓
-Structured JSON output
+Structured JSON outputs
 ↓
-Invoice validation report
+Batch validation reports
 ↓
 Duplicate detection report
 ↓
@@ -462,8 +462,78 @@ These will be added later as the project becomes more complete.
 
 ---
 
+---
+
+# Milestone 9 — Multi-Invoice Test Dataset and Batch Processing
+
+## What Was Built
+
+InvoicePie was upgraded from a single-invoice workflow into a multi-invoice batch-processing workflow.
+
+A new script, `scripts/create_sample_invoices.py`, was created to generate multiple fake invoice PDFs for testing.
+
+The sample dataset now includes:
+
+```text
+hotel_invoice_001.pdf
+hotel_invoice_001_copy.pdf
+transport_invoice_001.pdf
+software_invoice_missing_vat.pdf
+consulting_invoice_wrong_total.pdf
+office_invoice_invalid_status.pdf
+```
+
+The parser was updated so `app/parser.py` can process all PDF files in `data/sample_invoices/` and save one structured JSON output per invoice in `data/extracted_json/`.
+
+The validator was updated so `app/validator.py` can validate all parsed invoice JSON files and save one validation report per invoice in `data/validation_reports/`.
+
+The refreshed pipeline successfully produced:
+
+```text
+6 parsed invoice JSON files
+6 validation reports
+1 duplicate detection report
+6 invoice records in SQLite
+6 validation reports in SQLite
+1 duplicate match in SQLite
+```
+
+The dashboard was refreshed and now displays a larger sample dataset with multiple suppliers, categories, validation cases and a duplicate match.
+
+## Why This Matters
+
+This milestone makes InvoicePie more realistic.
+
+A single clean invoice proves the basic pipeline works, but it does not show how the system behaves with different suppliers, different invoice labels, invalid data or duplicate cases.
+
+By adding multiple sample invoices and batch processing, InvoicePie now demonstrates a more practical document-processing workflow. It can process a folder of invoices, create structured records, validate each one, detect duplicates, store results and show the updated data in a dashboard.
+
+This also gives the project better evidence for employer review because it shows the system working across several realistic cases rather than one perfect example.
+
+## What I Learned
+
+This step helped me understand the difference between a single-file script and a reusable batch-processing workflow.
+
+I learned that invoice processing becomes more complex when formats vary. Some invoices use `Invoice Number`, while others use labels such as `Invoice No`, `Invoice ID` or `Ref No`. Some use `Total`, while others use `Amount Due` or `Grand Total`.
+
+To handle this, the parser was improved to support multiple common label variations while still remaining rule-based and explainable.
+
+I also learned that validation is more useful when tested against both valid and invalid examples. The new sample set includes cases such as missing VAT information, incorrect totals and invalid payment status values.
+
+## Current Limitations
+
+The system still uses rule-based parsing and does not automatically learn invoice templates.
+
+It can handle several common label variations, but it may still fail on scanned invoices, complex layouts, table-heavy invoices, handwritten invoices or invoices with very different wording.
+
+The sample invoices are fake and intentionally simple. More realistic sample documents will be needed later to test layout variation, OCR requirements and AI-assisted extraction.
+
+The batch workflow currently processes local files only and does not yet include a dashboard upload feature.
+
+---
+
 ## Next Step
 
-The next development step is to add more varied sample invoices, including invalid and suspicious invoice examples, so the validation and duplicate detection features can be tested against more realistic cases.
+The next development step is to add automated tests for the parser, validator and duplicate detector so the core invoice-processing logic can be checked reliably as the project grows.
 
-Milestone 9 will only be added to this log after the expanded sample invoice set has been created, tested and committed.
+Milestone 10 will only be added to this log after automated tests have been implemented, run successfully and committed.

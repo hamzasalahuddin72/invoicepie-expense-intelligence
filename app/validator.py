@@ -29,7 +29,7 @@ def load_invoice_json(json_path: str) -> dict:
     if not path.exists():
         raise FileNotFoundError(f"Invoice JSON not found: {json_path}")
 
-    with open(path, "r", encoding="utf-8") as file:
+    with open(path, "r", encoding="utf-8-sig") as file:
         return json.load(file)
 
 
@@ -150,6 +150,22 @@ def validate_amounts(invoice_data: dict, issues: list) -> None:
             )
 
 
+def validate_vat_fields(invoice_data: dict, issues: list) -> None:
+    """
+    Flag cases where VAT is charged but no VAT number is present.
+    """
+    vat_amount = invoice_data.get("vat_amount")
+    vat_number = invoice_data.get("vat_number")
+
+    if is_valid_amount(vat_amount) and vat_amount > 0 and not vat_number:
+        add_issue(
+            issues,
+            "vat_number",
+            "medium",
+            "VAT amount is present but VAT number is missing.",
+        )
+
+
 def validate_payment_status(invoice_data: dict, issues: list) -> None:
     """
     Check whether payment status is one of the expected values.
@@ -177,6 +193,7 @@ def validate_invoice(invoice_data: dict) -> dict:
     validate_required_fields(invoice_data, issues)
     validate_dates(invoice_data, issues)
     validate_amounts(invoice_data, issues)
+    validate_vat_fields(invoice_data, issues)
     validate_payment_status(invoice_data, issues)
 
     high_risk_count = sum(1 for issue in issues if issue["severity"] == "high")
@@ -214,13 +231,51 @@ def save_validation_report(report: dict, output_path: str) -> None:
         json.dump(report, file, indent=4, ensure_ascii=False)
 
 
+def clear_existing_validation_reports(output_folder: str) -> None:
+    """
+    Remove old validation report JSON files before a fresh batch run.
+    """
+    folder = Path(output_folder)
+    folder.mkdir(parents=True, exist_ok=True)
+
+    for json_file in folder.glob("*.json"):
+        json_file.unlink()
+
+
+def validate_invoice_folder(input_folder: str, output_folder: str) -> int:
+    """
+    Validate all parsed invoice JSON files in a folder.
+    """
+    input_path = Path(input_folder)
+    output_path = Path(output_folder)
+
+    if not input_path.exists():
+        raise FileNotFoundError(f"Input folder not found: {input_folder}")
+
+    clear_existing_validation_reports(output_folder)
+
+    count = 0
+
+    for json_file in sorted(input_path.glob("*.json")):
+        invoice = load_invoice_json(str(json_file))
+        validation_report = validate_invoice(invoice)
+
+        output_json = output_path / f"{json_file.stem}_validation.json"
+        save_validation_report(validation_report, str(output_json))
+
+        count += 1
+        print(
+            f"Validated {json_file.name} -> {output_json} "
+            f"({validation_report['validation_status']})"
+        )
+
+    return count
+
+
 if __name__ == "__main__":
-    input_json = "data/extracted_json/hotel_invoice_001.json"
-    output_json = "data/validation_reports/hotel_invoice_001_validation.json"
+    input_folder = "data/extracted_json"
+    output_folder = "data/validation_reports"
 
-    invoice = load_invoice_json(input_json)
-    validation_report = validate_invoice(invoice)
-    save_validation_report(validation_report, output_json)
+    validated_count = validate_invoice_folder(input_folder, output_folder)
 
-    print(json.dumps(validation_report, indent=4, ensure_ascii=False))
-    print(f"\nValidation report saved to: {output_json}")
+    print(f"\nValidated {validated_count} invoice JSON files.")

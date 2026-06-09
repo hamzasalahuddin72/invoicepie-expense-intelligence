@@ -1,0 +1,14 @@
+{
+    "supplier_name": "Bright Advisory Ltd",
+    "invoice_number": "CON-4101",
+    "invoice_date": "2026-06-07",
+    "due_date": "2026-06-22",
+    "vat_number": "GB555111222",
+    "subtotal": 500.0,
+    "vat_amount": 100.0,
+    "total_amount": 700.0,
+    "payment_status": "Unpaid",
+    "category": "Consulting",
+    "currency": "GBP",
+    "source_file": "consulting_invoice_wrong_total.pdf"
+}

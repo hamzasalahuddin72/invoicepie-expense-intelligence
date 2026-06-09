@@ -1,0 +1,18 @@
+{
+    "source_file": "software_invoice_missing_vat.pdf",
+    "invoice_number": "SW-3301",
+    "supplier_name": "TechCloud Software Ltd",
+    "validation_status": "warning",
+    "summary": {
+        "total_issues": 1,
+        "high_risk_issues": 0,
+        "medium_risk_issues": 1
+    },
+    "issues": [
+        {
+            "field": "vat_number",
+            "severity": "medium",
+            "message": "VAT amount is present but VAT number is missing."
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "supplier_name": "Office Supplies Direct",
+    "invoice_number": "OFF-7788",
+    "invoice_date": "2026-06-08",
+    "due_date": "2026-06-23",
+    "vat_number": "GB222333444",
+    "subtotal": 120.0,
+    "vat_amount": 24.0,
+    "total_amount": 144.0,
+    "payment_status": "Processing",
+    "category": "Office Supplies",
+    "currency": "GBP",
+    "source_file": "office_invoice_invalid_status.pdf"
+}

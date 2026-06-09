@@ -1,0 +1,14 @@
+{
+    "supplier_name": "TechCloud Software Ltd",
+    "invoice_number": "SW-3301",
+    "invoice_date": "2026-06-06",
+    "due_date": "2026-06-21",
+    "vat_number": null,
+    "subtotal": 250.0,
+    "vat_amount": 50.0,
+    "total_amount": 300.0,
+    "payment_status": "Pending",
+    "category": "Software",
+    "currency": "GBP",
+    "source_file": "software_invoice_missing_vat.pdf"
+}

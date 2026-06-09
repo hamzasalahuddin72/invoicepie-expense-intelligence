@@ -1,0 +1,18 @@
+{
+    "source_file": "consulting_invoice_wrong_total.pdf",
+    "invoice_number": "CON-4101",
+    "supplier_name": "Bright Advisory Ltd",
+    "validation_status": "review_required",
+    "summary": {
+        "total_issues": 1,
+        "high_risk_issues": 1,
+        "medium_risk_issues": 0
+    },
+    "issues": [
+        {
+            "field": "total_amount",
+            "severity": "high",
+            "message": "Subtotal plus VAT should equal total. Expected 600.0, found 700.0."
+        }
+    ]
+}
