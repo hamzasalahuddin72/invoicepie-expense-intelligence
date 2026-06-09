@@ -60,3 +60,21 @@ Completed: Implemented and tested PDF text extraction from the first sample invo
 ### Next Step
 
 Build `app/parser.py` to convert extracted invoice text into structured JSON fields such as supplier name, invoice number, invoice date, due date, VAT number, subtotal, VAT amount, total amount, payment status, and category.
+
+## Milestone 3 — Structured Invoice Parsing
+
+### Completed Steps
+
+- Implemented `app/parser.py` to convert extracted invoice text into structured invoice data.
+- Added helper functions to identify labelled invoice fields such as invoice number, dates, VAT number, subtotal, VAT amount, total amount, payment status, and category.
+- Added basic cleaning for UK currency amounts and date formatting.
+- Parsed the first sample invoice into a JSON-ready Python dictionary.
+- Saved the structured invoice output to `data/extracted_json/hotel_invoice_001.json`.
+
+### Why This Matters
+
+InvoicePie can now move beyond raw PDF text extraction. The project has its first working data pipeline: a PDF invoice can be read, key business fields can be extracted, and the result can be stored as structured JSON. This creates the foundation for validation rules, duplicate detection, database storage, and dashboard insights.
+
+### Next Step
+
+Build `app/validator.py` to check whether important invoice fields are missing, whether amounts are valid, and whether the invoice looks ready for business processing.
