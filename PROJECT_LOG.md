@@ -18,7 +18,7 @@ The aim of this project is to build a realistic end-to-end document intelligence
 
 ## Current Project Status
 
-InvoicePie currently has a working local Python environment, a generated fake sample invoice PDF, PDF text extraction using PyMuPDF, structured invoice parsing into JSON, and invoice validation report generation.
+InvoicePie currently has a working local Python environment, a generated fake sample invoice PDF, PDF text extraction using PyMuPDF, structured invoice parsing into JSON, invoice validation report generation, and duplicate invoice detection.
 
 The current completed pipeline is:
 
@@ -32,6 +32,8 @@ Invoice field parsing
 Structured JSON output
 ↓
 Invoice validation report
+↓
+Duplicate detection report
 ```
 
 ---
@@ -207,8 +209,63 @@ The system also depends on the parser producing clean structured fields. If the 
 
 ---
 
+---
+
+# Milestone 5 — Duplicate Invoice Detection
+
+## What Was Built
+
+The file `app/duplicate_detector.py` was implemented to compare parsed invoice JSON records and identify possible duplicate invoices.
+
+The duplicate detector currently loads invoice records from:
+
+```text
+data/extracted_json/
+```
+
+It compares invoice pairs using supplier name, invoice number, invoice date, due date and total amount. Each match is given a similarity score and a match type such as `possible_duplicate` or `likely_duplicate`.
+
+To test the feature, two additional sample invoice JSON files were added:
+
+```text
+data/extracted_json/hotel_invoice_001_duplicate.json
+data/extracted_json/transport_invoice_001.json
+```
+
+The duplicate detection report is saved as:
+
+```text
+data/duplicate_reports/duplicate_report.json
+```
+
+The test successfully detected one likely duplicate between the original hotel invoice and the duplicate hotel invoice copy.
+
+## Why This Matters
+
+Duplicate detection is a valuable business-control feature because duplicate supplier invoices can lead to accidental double payments.
+
+This milestone moves InvoicePie beyond extraction and validation. The system can now compare multiple invoice records and flag records that may need review before payment processing.
+
+## What I Learned
+
+This step helped me understand how duplicate detection can be built using simple but explainable rule-based scoring.
+
+I learned that matching only one field is not enough. A stronger duplicate signal comes from combining multiple fields such as supplier name, invoice number, total amount and invoice dates.
+
+I also encountered a UTF-8 BOM issue when loading JSON files created on Windows. Updating the JSON reader to use `utf-8-sig` made the duplicate detector more robust when handling files saved with different encoding behaviour.
+
+## Current Limitations
+
+The duplicate detector currently uses rule-based scoring. This works well for clear duplicate cases where supplier name, invoice number and totals match exactly.
+
+It may not detect more complex duplicates where supplier names are slightly different, invoice numbers have formatting differences, dates are missing, or totals vary because of partial payments or currency conversion.
+
+The current test records are also small and simple. More sample invoices will be needed later to test realistic duplicate and near-duplicate cases.
+
+---
+
 ## Next Step
 
-The next development step is to build duplicate detection so InvoicePie can identify possible duplicate invoices using supplier name, invoice number, invoice date and total amount.
+The next development step is to add database storage so InvoicePie can save parsed invoices, validation results and duplicate detection outputs in a structured database instead of relying only on JSON files.
 
-Milestone 5 will only be added to this log after duplicate detection has been implemented, tested and committed.
+Milestone 6 will only be added to this log after database storage has been implemented, tested and committed.

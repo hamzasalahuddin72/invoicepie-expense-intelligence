@@ -1,0 +1,33 @@
+﻿{
+    "record_count": 3,
+    "match_count": 1,
+    "matches": [
+        {
+            "match_type": "likely_duplicate",
+            "similarity_score": 100,
+            "reasons": [
+                "Supplier name matches.",
+                "Invoice number matches.",
+                "Total amount matches.",
+                "Invoice date matches.",
+                "Due date matches."
+            ],
+            "record_a": {
+                "record_file": "hotel_invoice_001.json",
+                "supplier_name": "ABC Hotel Ltd",
+                "invoice_number": "INV-1001",
+                "invoice_date": "2026-06-04",
+                "total_amount": 1200.0,
+                "source_file": "hotel_invoice_001.pdf"
+            },
+            "record_b": {
+                "record_file": "hotel_invoice_001_duplicate.json",
+                "supplier_name": "ABC Hotel Ltd",
+                "invoice_number": "INV-1001",
+                "invoice_date": "2026-06-04",
+                "total_amount": 1200.0,
+                "source_file": "hotel_invoice_001_copy.pdf"
+            }
+        }
+    ]
+}

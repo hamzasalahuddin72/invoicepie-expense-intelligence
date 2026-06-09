@@ -1,0 +1,14 @@
+﻿{
+    "supplier_name": "London Transfer Services",
+    "invoice_number": "TR-2201",
+    "invoice_date": "2026-06-05",
+    "due_date": "2026-06-20",
+    "vat_number": "GB987654321",
+    "subtotal": 300.0,
+    "vat_amount": 60.0,
+    "total_amount": 360.0,
+    "payment_status": "Unpaid",
+    "category": "Transport",
+    "currency": "GBP",
+    "source_file": "transport_invoice_001.pdf"
+}
