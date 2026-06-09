@@ -207,27 +207,26 @@ Build `app/validator.py` to check whether required invoice fields are present, w
 
 ---
 
-# Next Planned Milestones
+# Milestone 4 — Invoice Validation
 
-## Milestone 4 — Invoice Validation
+## What Was Built
 
-Planned validation checks:
+The file `app/validator.py` was implemented to check whether parsed invoice data is complete, consistent and ready for business processing.
+
+The validator currently checks:
 
 ```text
 required fields are present
-invoice number is not missing
 invoice date is valid
 due date is valid
-due date is not before invoice date
-subtotal is valid
-VAT amount is valid
-total amount is valid
-subtotal + VAT roughly matches total
-payment status is present
-category is present
-```
+due date is not earlier than invoice date
+subtotal is a valid amount
+VAT amount is a valid amount
+total amount is a valid amount
+subtotal plus VAT matches total amount
+payment status uses an expected value
 
-The goal is to produce a validation report showing whether the invoice is complete, suspicious, or ready for processing.
+# Next Planned Milestones
 
 ## Milestone 5 — Duplicate Detection
 
