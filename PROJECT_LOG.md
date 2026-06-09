@@ -173,8 +173,6 @@ These limitations will be improved later with stronger parsing logic, validation
 
 ---
 
----
-
 # Milestone 4 — Invoice Validation
 
 ## What Was Built
