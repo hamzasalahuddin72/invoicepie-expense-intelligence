@@ -18,7 +18,7 @@ The aim of this project is to build a realistic end-to-end document intelligence
 
 ## Current Project Status
 
-InvoicePie currently has a working local Python environment, a generated fake sample invoice PDF, PDF text extraction using PyMuPDF, structured invoice parsing into JSON, invoice validation report generation, duplicate invoice detection, SQLite database storage, and a Streamlit dashboard for expense insights.
+InvoicePie currently has a working local Python environment, a generated fake sample invoice PDF, PDF text extraction using PyMuPDF, structured invoice parsing into JSON, invoice validation report generation, duplicate invoice detection, SQLite database storage, a Streamlit dashboard for expense insights, and improved GitHub project documentation.
 
 The current completed pipeline is:
 
@@ -38,6 +38,8 @@ Duplicate detection report
 SQLite database storage
 ↓
 Streamlit dashboard
+↓
+GitHub README documentation
 ```
 
 ---
@@ -408,8 +410,60 @@ The dashboard also does not yet include filters, upload functionality, authentic
 
 ---
 
+---
+
+# Milestone 8 — README and GitHub Presentation
+
+## What Was Built
+
+The project `README.md` was rewritten to explain InvoicePie more clearly for GitHub visitors and potential employers.
+
+The README now includes:
+
+```text
+project overview
+current pipeline
+implemented features
+tech stack
+project structure
+local setup instructions
+run commands
+example output
+current limitations
+planned improvements
+portfolio purpose
+```
+
+A `.streamlit/config.toml` file was also added to disable Streamlit usage statistics for the local project environment.
+
+A `docs/screenshots/` folder was created so dashboard screenshots can be added later as the visual presentation of the project improves.
+
+## Why This Matters
+
+A strong README is important because many employers and technical reviewers will look at the GitHub page before running the project.
+
+The code shows what the system does technically, but the README explains the project purpose, workflow, features and business value. This makes the project easier to understand quickly and improves the first impression of the repository.
+
+## What I Learned
+
+This milestone helped me understand that project presentation is part of software engineering.
+
+A portfolio project should not only work locally. It should also be easy for someone else to understand, set up and review. Clear documentation helps connect the technical implementation to the business problem the project is trying to solve.
+
+I also learned that documenting current limitations is useful because it shows awareness of what the system can and cannot do yet.
+
+## Current Limitations
+
+The README explains the current project well, but it does not yet include actual dashboard screenshots.
+
+The project also does not yet have automated tests, deployment instructions, architecture diagrams or a hosted demo link.
+
+These will be added later as the project becomes more complete.
+
+---
+
 ## Next Step
 
-The next development step is to improve the GitHub presentation of the project by updating the README with setup instructions, architecture, screenshots, current features, limitations and future improvements.
+The next development step is to add more varied sample invoices, including invalid and suspicious invoice examples, so the validation and duplicate detection features can be tested against more realistic cases.
 
-Milestone 8 will only be added to this log after the README and project documentation have been improved, tested and committed.
+Milestone 9 will only be added to this log after the expanded sample invoice set has been created, tested and committed.
