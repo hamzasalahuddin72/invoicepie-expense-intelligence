@@ -18,9 +18,9 @@ The aim of this project is to build a realistic end-to-end document intelligence
 
 ## Current Project Status
 
-The project currently has a working local Python environment, a generated fake sample invoice PDF, PDF text extraction using PyMuPDF, and structured invoice parsing into JSON.
+InvoicePie currently has a working local Python environment, a generated fake sample invoice PDF, PDF text extraction using PyMuPDF, and structured invoice parsing into JSON.
 
-The current working pipeline is:
+The current completed pipeline is:
 
 ```text
 Sample invoice PDF
@@ -30,30 +30,6 @@ PDF text extraction
 Invoice field parsing
 ↓
 Structured JSON output
-```
-
-The next stage is to add validation rules so the system can check whether an invoice is complete, consistent and ready for business processing.
-
----
-
-## Planned System Workflow
-
-```text
-Invoice PDF upload
-↓
-Text extraction
-↓
-Structured field parsing
-↓
-Validation checks
-↓
-Duplicate detection
-↓
-Database storage
-↓
-Dashboard insights
-↓
-AI-assisted invoice review
 ```
 
 ---
@@ -90,10 +66,6 @@ The project currently uses only one simple fake invoice. This is enough for the 
 
 More sample invoices will be needed later to test different suppliers, categories, amounts, layouts, duplicate cases, missing fields, and suspicious values.
 
-## Next Step
-
-Use the generated invoice PDF to test whether InvoicePie can extract readable text from a digital PDF document.
-
 ---
 
 # Milestone 2 — PDF Text Extraction
@@ -129,10 +101,6 @@ I also learned that digital PDFs are easier to process than scanned image PDFs b
 The extractor currently works best with text-based digital PDFs.
 
 It does not yet handle scanned invoices, image-only invoices, handwritten content, rotated pages, complex tables, or multi-column layouts. These limitations are acceptable for the first MVP, but they will need to be considered as the project becomes more realistic.
-
-## Next Step
-
-Build a parser that converts the extracted invoice text into structured fields such as supplier name, invoice number, invoice date, due date, VAT number, subtotal, VAT amount, total amount, payment status, and category.
 
 ---
 
@@ -201,80 +169,10 @@ It may not work well yet with messy layouts, scanned invoices, table-heavy invoi
 
 These limitations will be improved later with stronger parsing logic, validation rules, more sample invoice formats, OCR support, and possibly AI-assisted extraction.
 
+---
+
 ## Next Step
 
-Build `app/validator.py` to check whether required invoice fields are present, whether dates and amounts are valid, and whether the invoice is ready for business processing.
+The next development step is to build `app/validator.py` so InvoicePie can check whether required invoice fields are present, whether dates and amounts are valid, and whether the parsed invoice is ready for business processing.
 
----
-
-# Milestone 4 — Invoice Validation
-
-## What Was Built
-
-The file `app/validator.py` was implemented to check whether parsed invoice data is complete, consistent and ready for business processing.
-
-The validator currently checks:
-
-```text
-required fields are present
-invoice date is valid
-due date is valid
-due date is not earlier than invoice date
-subtotal is a valid amount
-VAT amount is a valid amount
-total amount is a valid amount
-subtotal plus VAT matches total amount
-payment status uses an expected value
-
-# Next Planned Milestones
-
-## Milestone 5 — Duplicate Detection
-
-Planned duplicate checks:
-
-```text
-same supplier and invoice number
-same supplier and total amount
-same invoice number and date
-high similarity between invoice records
-```
-
-The goal is to flag possible duplicate invoices before payment.
-
-## Milestone 6 — Database Storage
-
-Planned database work:
-
-```text
-store parsed invoice records
-store supplier details
-store validation results
-store duplicate check results
-prepare data for dashboard analytics
-```
-
-The goal is to move from JSON files to a proper structured database.
-
-## Milestone 7 — Dashboard and Expense Insights
-
-Planned dashboard features:
-
-```text
-total monthly spend
-spend by supplier
-spend by category
-unpaid invoices
-invoices due soon
-validation issues
-duplicate invoice warnings
-```
-
-The goal is to turn processed invoice data into useful business insight.
-
----
-
-# Development Notes
-
-This project is being built milestone by milestone. Each stage is tested locally before being committed to GitHub.
-
-The project log focuses on what was built, why it matters, what was learned, current limitations, and the next improvement. This makes the development process easier to review and helps show the reasoning behind the project, not just the final code.
+Milestone 4 will only be added to this log after the validator has been implemented, tested and committed.
