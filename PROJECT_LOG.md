@@ -78,3 +78,31 @@ InvoicePie can now move beyond raw PDF text extraction. The project has its firs
 ### Next Step
 
 Build `app/validator.py` to check whether important invoice fields are missing, whether amounts are valid, and whether the invoice looks ready for business processing.
+
+## Milestone 3 — Structured Invoice Parsing
+
+### What Was Built
+
+Implemented `app/parser.py` to convert extracted invoice text into structured invoice data. The parser identifies key invoice fields including supplier name, invoice number, invoice date, due date, VAT number, subtotal, VAT amount, total amount, payment status, and category.
+
+The parsed output is saved as JSON in `data/extracted_json/hotel_invoice_001.json`.
+
+### Why This Matters
+
+This milestone turns raw PDF text into structured business data. It creates the foundation for validation, duplicate detection, database storage, dashboard analytics, and later AI-assisted invoice review.
+
+### What I Learned
+
+This step helped me understand that invoice intelligence is not only about extracting text from a PDF. The extracted text must be cleaned, standardised, and converted into reliable fields before it can be useful for business decisions.
+
+I also learned how important predictable labels, date formatting, currency cleaning, and JSON structure are when building a document-processing pipeline.
+
+### Current Limitations
+
+The parser currently works best with clean, text-based invoices that use predictable labels such as `Invoice Number`, `Invoice Date`, and `Total`.
+
+It may not work well yet with scanned invoices, messy layouts, tables, handwritten documents, or invoices using different field names. These limitations will be improved later with stronger parsing logic, OCR support, validation rules, and possibly AI-assisted extraction.
+
+### Next Step
+
+Build `app/validator.py` to check whether required invoice fields are present, whether dates and amounts are valid, and whether the invoice is ready for business processing.
