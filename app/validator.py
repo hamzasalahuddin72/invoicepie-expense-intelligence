@@ -35,7 +35,7 @@ def load_invoice_json(json_path: str) -> dict:
 
 def parse_iso_date(value: Optional[str]) -> Optional[date]:
     """
-    Convert an ISO date string into a date object.
+    Convert an ISO date string into a Python date object.
     """
     if not value:
         return None
@@ -48,7 +48,7 @@ def parse_iso_date(value: Optional[str]) -> Optional[date]:
 
 def add_issue(issues: list, field: str, severity: str, message: str) -> None:
     """
-    Add a validation issue to the report.
+    Add a structured validation issue to the report.
     """
     issues.append(
         {
@@ -61,7 +61,7 @@ def add_issue(issues: list, field: str, severity: str, message: str) -> None:
 
 def validate_required_fields(invoice_data: dict, issues: list) -> None:
     """
-    Check that required invoice fields are present.
+    Check that important invoice fields are present.
     """
     for field in REQUIRED_FIELDS:
         value = invoice_data.get(field)
@@ -77,7 +77,7 @@ def validate_required_fields(invoice_data: dict, issues: list) -> None:
 
 def validate_dates(invoice_data: dict, issues: list) -> None:
     """
-    Validate invoice and due dates.
+    Check invoice date and due date values.
     """
     invoice_date = parse_iso_date(invoice_data.get("invoice_date"))
     due_date = parse_iso_date(invoice_data.get("due_date"))
@@ -116,7 +116,7 @@ def is_valid_amount(value: Any) -> bool:
 
 def validate_amounts(invoice_data: dict, issues: list) -> None:
     """
-    Validate subtotal, VAT and total amount fields.
+    Check subtotal, VAT and total amount fields.
     """
     subtotal = invoice_data.get("subtotal")
     vat_amount = invoice_data.get("vat_amount")
@@ -152,7 +152,7 @@ def validate_amounts(invoice_data: dict, issues: list) -> None:
 
 def validate_payment_status(invoice_data: dict, issues: list) -> None:
     """
-    Validate payment status value.
+    Check whether payment status is one of the expected values.
     """
     payment_status = invoice_data.get("payment_status")
 
@@ -164,13 +164,13 @@ def validate_payment_status(invoice_data: dict, issues: list) -> None:
                 issues,
                 "payment_status",
                 "medium",
-                f"Payment status '{payment_status}' is not one of the expected values: paid, unpaid, pending, overdue.",
+                f"Payment status '{payment_status}' is not one of: paid, unpaid, pending, overdue.",
             )
 
 
 def validate_invoice(invoice_data: dict) -> dict:
     """
-    Run all validation checks and return a structured validation report.
+    Run all invoice validation checks and return a structured report.
     """
     issues = []
 
@@ -183,17 +183,17 @@ def validate_invoice(invoice_data: dict) -> dict:
     medium_risk_count = sum(1 for issue in issues if issue["severity"] == "medium")
 
     if high_risk_count > 0:
-        status = "review_required"
+        validation_status = "review_required"
     elif medium_risk_count > 0:
-        status = "warning"
+        validation_status = "warning"
     else:
-        status = "passed"
+        validation_status = "passed"
 
     return {
         "source_file": invoice_data.get("source_file"),
         "invoice_number": invoice_data.get("invoice_number"),
         "supplier_name": invoice_data.get("supplier_name"),
-        "validation_status": status,
+        "validation_status": validation_status,
         "summary": {
             "total_issues": len(issues),
             "high_risk_issues": high_risk_count,
