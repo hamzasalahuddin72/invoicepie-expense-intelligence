@@ -1,108 +1,281 @@
 ﻿# InvoicePie Project Log
 
 ## Project Name
+
 InvoicePie
 
 ## Repository
-invoicepie-expense-intelligence
+
+`invoicepie-expense-intelligence`
 
 ## Project Purpose
-InvoicePie is an AI-powered invoice and expense intelligence system designed to extract structured data from invoice PDFs, validate missing or suspicious fields, detect duplicates, and produce business expense insights.
+
+InvoicePie is an AI-powered invoice and expense intelligence system designed to extract structured data from invoice PDFs, validate missing or suspicious fields, detect duplicate invoices, and produce business expense insights.
+
+The aim of this project is to build a realistic end-to-end document intelligence workflow. Instead of only extracting raw text from invoices, InvoicePie will gradually turn invoice documents into clean, structured, validated and useful business data.
 
 ---
 
-## Milestone 1 — Project Setup and First Sample Invoice
+## Current Project Status
 
-### Completed Steps
+The project currently has a working local Python environment, a generated fake sample invoice PDF, PDF text extraction using PyMuPDF, and structured invoice parsing into JSON.
 
-- Created local project folder: `invoicepie-expense-intelligence`.
-- Initialised local Git repository for InvoicePie.
-- Created initial project structure with `app`, `data`, `tests`, `README.md`, `requirements.txt`, and `.gitignore`.
-- Added initial Python dependencies in `requirements.txt`.
-- Created and activated a Python virtual environment.
-- Installed project dependencies from `requirements.txt`.
-- Created a script folder for utility scripts.
-- Created `scripts/create_sample_invoice.py` to generate a fake invoice PDF for testing.
-- Fixed Windows encoding issue caused by the pound symbol in the generated invoice text.
-- Successfully created the first fake sample invoice PDF: `data/sample_invoices/hotel_invoice_001.pdf`.
+The current working pipeline is:
 
-### Current Status
+```text
+Sample invoice PDF
+↓
+PDF text extraction
+↓
+Invoice field parsing
+↓
+Structured JSON output
+```
 
-The project has a clean starting structure, working Python environment, installed dependencies, and one generated fake invoice PDF ready for testing PDF text extraction.
-
-### Latest Completed Progress Line
-
-Completed: Fixed Windows encoding issue and created the first fake sample invoice PDF.
+The next stage is to add validation rules so the system can check whether an invoice is complete, consistent and ready for business processing.
 
 ---
+
+## Planned System Workflow
+
+```text
+Invoice PDF upload
+↓
+Text extraction
+↓
+Structured field parsing
+↓
+Validation checks
+↓
+Duplicate detection
+↓
+Database storage
+↓
+Dashboard insights
+↓
+AI-assisted invoice review
+```
+
+---
+
+# Milestone 1 — Project Setup and First Sample Invoice
+
+## What Was Built
+
+The initial InvoicePie project structure was created with folders for application code, sample data, extracted JSON outputs, tests, and utility scripts.
+
+A Python virtual environment was created and the first set of project dependencies was installed. A utility script, `scripts/create_sample_invoice.py`, was also created to generate a fake invoice PDF for testing.
+
+The first sample invoice was generated and saved as:
+
+```text
+data/sample_invoices/hotel_invoice_001.pdf
+```
+
+## Why This Matters
+
+A clean project setup is important because InvoicePie will grow into a multi-stage system. Separating application code, sample invoices, extracted outputs, tests, and utility scripts makes the project easier to maintain and easier for another developer or employer to understand.
+
+Creating a fake sample invoice also avoids using private or sensitive business documents. This keeps the project safe to publish on GitHub while still allowing realistic testing.
+
+## What I Learned
+
+This milestone helped me understand the importance of setting up a project in a structured way before adding features. Even for a small MVP, clear folders and dependency management make the development process cleaner.
+
+I also encountered a Windows encoding issue caused by the pound symbol in the generated invoice text. Fixing this helped me understand why file encoding matters when working with currency symbols and text data in Python.
+
+## Current Limitations
+
+The project currently uses only one simple fake invoice. This is enough for the first test, but it does not represent the variety of invoice formats used in the real world.
+
+More sample invoices will be needed later to test different suppliers, categories, amounts, layouts, duplicate cases, missing fields, and suspicious values.
 
 ## Next Step
 
-Implement the first PDF text extraction script using PyMuPDF in `app/extractor.py`, then test whether the sample invoice text can be printed in the terminal.
+Use the generated invoice PDF to test whether InvoicePie can extract readable text from a digital PDF document.
 
-## Milestone 2 — PDF Text Extraction
+---
 
-### Completed Steps
+# Milestone 2 — PDF Text Extraction
 
-- Implemented `app/extractor.py` using PyMuPDF.
-- Added a reusable `extract_text_from_pdf()` function.
-- Tested the extractor with `data/sample_invoices/hotel_invoice_001.pdf`.
-- Confirmed that invoice text can be extracted and printed in the terminal.
+## What Was Built
 
-### Why This Matters
+The file `app/extractor.py` was implemented using PyMuPDF.
 
-This is the first working document-processing step in InvoicePie. The system can now read text-based invoice PDFs, which creates the foundation for parsing invoice fields, validating invoice data, detecting duplicates, and producing expense insights later.
+A reusable function called `extract_text_from_pdf()` was added. This function takes a PDF file path, reads each page, extracts the text, and returns the extracted content as a string.
 
-### Latest Completed Progress Line
+The extractor was tested using:
 
-Completed: Implemented and tested PDF text extraction from the first sample invoice.
+```text
+data/sample_invoices/hotel_invoice_001.pdf
+```
 
-### Next Step
+The test confirmed that text from the sample invoice can be extracted and printed in the terminal.
 
-Build `app/parser.py` to convert extracted invoice text into structured JSON fields such as supplier name, invoice number, invoice date, due date, VAT number, subtotal, VAT amount, total amount, payment status, and category.
+## Why This Matters
 
-## Milestone 3 — Structured Invoice Parsing
+PDF text extraction is the first real document-processing step in InvoicePie. Before the system can validate invoices, detect duplicates, store records, or generate insights, it must first be able to read invoice content from a PDF file.
 
-### Completed Steps
+This milestone creates the foundation for the rest of the project.
 
-- Implemented `app/parser.py` to convert extracted invoice text into structured invoice data.
-- Added helper functions to identify labelled invoice fields such as invoice number, dates, VAT number, subtotal, VAT amount, total amount, payment status, and category.
-- Added basic cleaning for UK currency amounts and date formatting.
-- Parsed the first sample invoice into a JSON-ready Python dictionary.
-- Saved the structured invoice output to `data/extracted_json/hotel_invoice_001.json`.
+## What I Learned
 
-### Why This Matters
+This milestone helped me understand the difference between reading a file and extracting meaningful content from a document format like PDF.
 
-InvoicePie can now move beyond raw PDF text extraction. The project has its first working data pipeline: a PDF invoice can be read, key business fields can be extracted, and the result can be stored as structured JSON. This creates the foundation for validation rules, duplicate detection, database storage, and dashboard insights.
+I also learned that digital PDFs are easier to process than scanned image PDFs because their text can usually be extracted directly. Scanned invoices will require OCR later, which is a more advanced step.
 
-### Next Step
+## Current Limitations
 
-Build `app/validator.py` to check whether important invoice fields are missing, whether amounts are valid, and whether the invoice looks ready for business processing.
+The extractor currently works best with text-based digital PDFs.
 
-## Milestone 3 — Structured Invoice Parsing
+It does not yet handle scanned invoices, image-only invoices, handwritten content, rotated pages, complex tables, or multi-column layouts. These limitations are acceptable for the first MVP, but they will need to be considered as the project becomes more realistic.
 
-### What Was Built
+## Next Step
 
-Implemented `app/parser.py` to convert extracted invoice text into structured invoice data. The parser identifies key invoice fields including supplier name, invoice number, invoice date, due date, VAT number, subtotal, VAT amount, total amount, payment status, and category.
+Build a parser that converts the extracted invoice text into structured fields such as supplier name, invoice number, invoice date, due date, VAT number, subtotal, VAT amount, total amount, payment status, and category.
 
-The parsed output is saved as JSON in `data/extracted_json/hotel_invoice_001.json`.
+---
 
-### Why This Matters
+# Milestone 3 — Structured Invoice Parsing
 
-This milestone turns raw PDF text into structured business data. It creates the foundation for validation, duplicate detection, database storage, dashboard analytics, and later AI-assisted invoice review.
+## What Was Built
 
-### What I Learned
+The file `app/parser.py` was implemented to convert extracted invoice text into structured invoice data.
 
-This step helped me understand that invoice intelligence is not only about extracting text from a PDF. The extracted text must be cleaned, standardised, and converted into reliable fields before it can be useful for business decisions.
+The parser currently identifies and cleans the following fields:
 
-I also learned how important predictable labels, date formatting, currency cleaning, and JSON structure are when building a document-processing pipeline.
+```text
+supplier_name
+invoice_number
+invoice_date
+due_date
+vat_number
+subtotal
+vat_amount
+total_amount
+payment_status
+category
+currency
+source_file
+```
 
-### Current Limitations
+The first sample invoice was successfully parsed into structured JSON and saved as:
 
-The parser currently works best with clean, text-based invoices that use predictable labels such as `Invoice Number`, `Invoice Date`, and `Total`.
+```text
+data/extracted_json/hotel_invoice_001.json
+```
 
-It may not work well yet with scanned invoices, messy layouts, tables, handwritten documents, or invoices using different field names. These limitations will be improved later with stronger parsing logic, OCR support, validation rules, and possibly AI-assisted extraction.
+## Why This Matters
 
-### Next Step
+This milestone turns raw PDF text into structured business data.
+
+Raw text by itself is not enough for business use. A company needs reliable fields such as invoice number, supplier, due date and total amount before it can check payments, detect duplicates, analyse expenses, or export records into accounting workflows.
+
+This is the first point where InvoicePie begins to behave like an invoice intelligence system rather than only a PDF reader.
+
+## What I Learned
+
+This step helped me understand that document intelligence is not only about extracting text. The extracted text must be cleaned, standardised and converted into reliable fields before it becomes useful.
+
+I also learned the importance of predictable labels, date parsing, currency cleaning and JSON structure when building a document-processing pipeline.
+
+For example, values such as `£1,200.00` need to be cleaned before they can be treated as numbers, and UK-style dates need to be converted into a consistent format before they can be compared or validated.
+
+## Current Limitations
+
+The parser currently works best with clean, text-based invoices that use predictable labels such as:
+
+```text
+Invoice Number
+Invoice Date
+Due Date
+VAT Number
+Subtotal
+VAT
+Total
+Payment Status
+Category
+```
+
+It may not work well yet with messy layouts, scanned invoices, table-heavy invoices, handwritten documents, or invoices using different field names such as `Amount Due`, `Balance`, `Bill To`, or `Tax`.
+
+These limitations will be improved later with stronger parsing logic, validation rules, more sample invoice formats, OCR support, and possibly AI-assisted extraction.
+
+## Next Step
 
 Build `app/validator.py` to check whether required invoice fields are present, whether dates and amounts are valid, and whether the invoice is ready for business processing.
+
+---
+
+# Next Planned Milestones
+
+## Milestone 4 — Invoice Validation
+
+Planned validation checks:
+
+```text
+required fields are present
+invoice number is not missing
+invoice date is valid
+due date is valid
+due date is not before invoice date
+subtotal is valid
+VAT amount is valid
+total amount is valid
+subtotal + VAT roughly matches total
+payment status is present
+category is present
+```
+
+The goal is to produce a validation report showing whether the invoice is complete, suspicious, or ready for processing.
+
+## Milestone 5 — Duplicate Detection
+
+Planned duplicate checks:
+
+```text
+same supplier and invoice number
+same supplier and total amount
+same invoice number and date
+high similarity between invoice records
+```
+
+The goal is to flag possible duplicate invoices before payment.
+
+## Milestone 6 — Database Storage
+
+Planned database work:
+
+```text
+store parsed invoice records
+store supplier details
+store validation results
+store duplicate check results
+prepare data for dashboard analytics
+```
+
+The goal is to move from JSON files to a proper structured database.
+
+## Milestone 7 — Dashboard and Expense Insights
+
+Planned dashboard features:
+
+```text
+total monthly spend
+spend by supplier
+spend by category
+unpaid invoices
+invoices due soon
+validation issues
+duplicate invoice warnings
+```
+
+The goal is to turn processed invoice data into useful business insight.
+
+---
+
+# Development Notes
+
+This project is being built milestone by milestone. Each stage is tested locally before being committed to GitHub.
+
+The project log focuses on what was built, why it matters, what was learned, current limitations, and the next improvement. This makes the development process easier to review and helps show the reasoning behind the project, not just the final code.
