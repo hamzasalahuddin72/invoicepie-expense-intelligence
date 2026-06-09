@@ -39,3 +39,24 @@ Completed: Fixed Windows encoding issue and created the first fake sample invoic
 ## Next Step
 
 Implement the first PDF text extraction script using PyMuPDF in `app/extractor.py`, then test whether the sample invoice text can be printed in the terminal.
+
+## Milestone 2 — PDF Text Extraction
+
+### Completed Steps
+
+- Implemented `app/extractor.py` using PyMuPDF.
+- Added a reusable `extract_text_from_pdf()` function.
+- Tested the extractor with `data/sample_invoices/hotel_invoice_001.pdf`.
+- Confirmed that invoice text can be extracted and printed in the terminal.
+
+### Why This Matters
+
+This is the first working document-processing step in InvoicePie. The system can now read text-based invoice PDFs, which creates the foundation for parsing invoice fields, validating invoice data, detecting duplicates, and producing expense insights later.
+
+### Latest Completed Progress Line
+
+Completed: Implemented and tested PDF text extraction from the first sample invoice.
+
+### Next Step
+
+Build `app/parser.py` to convert extracted invoice text into structured JSON fields such as supplier name, invoice number, invoice date, due date, VAT number, subtotal, VAT amount, total amount, payment status, and category.
