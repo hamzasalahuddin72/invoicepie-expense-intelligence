@@ -18,7 +18,7 @@ The aim of this project is to build a realistic end-to-end document intelligence
 
 ## Current Project Status
 
-InvoicePie currently has a working local Python environment, a generated fake sample invoice PDF, PDF text extraction using PyMuPDF, structured invoice parsing into JSON, invoice validation report generation, and duplicate invoice detection.
+InvoicePie currently has a working local Python environment, a generated fake sample invoice PDF, PDF text extraction using PyMuPDF, structured invoice parsing into JSON, invoice validation report generation, duplicate invoice detection, and SQLite database storage.
 
 The current completed pipeline is:
 
@@ -34,6 +34,8 @@ Structured JSON output
 Invoice validation report
 ↓
 Duplicate detection report
+↓
+SQLite database storage
 ```
 
 ---
@@ -264,8 +266,82 @@ The current test records are also small and simple. More sample invoices will be
 
 ---
 
+---
+
+# Milestone 6 — Database Storage
+
+## What Was Built
+
+The file `app/database.py` was implemented to store InvoicePie outputs in a local SQLite database.
+
+The database currently creates and manages three tables:
+
+```text
+invoices
+validation_reports
+duplicate_matches
+```
+
+The script imports parsed invoice records from:
+
+```text
+data/extracted_json/
+```
+
+It imports validation reports from:
+
+```text
+data/validation_reports/
+```
+
+It imports duplicate detection matches from:
+
+```text
+data/duplicate_reports/
+```
+
+The local SQLite database is created at:
+
+```text
+data/database/invoicepie.db
+```
+
+The latest database import successfully stored:
+
+```text
+3 invoice records
+1 validation report
+1 duplicate match
+```
+
+## Why This Matters
+
+Database storage is an important step because JSON files are useful for early development, but they are not enough for a realistic business system.
+
+By moving parsed invoices, validation reports and duplicate matches into structured database tables, InvoicePie becomes easier to query, analyse and extend. This prepares the project for dashboard reporting, filtering, search, analytics and future API development.
+
+This milestone also shows that the system is moving from separate scripts into a more complete data-processing workflow.
+
+## What I Learned
+
+This step helped me understand how extracted and processed document data can be organised into database tables.
+
+I also learned why separating invoices, validation reports and duplicate matches into different tables makes the data cleaner and easier to work with. Each table has a clear responsibility, which supports better reporting and future development.
+
+Using SQLite also helped me build database functionality quickly without needing external database setup at this stage. This keeps the project lightweight while still proving the core storage workflow.
+
+## Current Limitations
+
+The project currently uses SQLite for local development. This is suitable for a portfolio MVP, but a production version would likely use PostgreSQL or a managed cloud database.
+
+The database import script currently resets tables before importing sample data, which is useful for repeatable testing but not suitable for a real live system.
+
+The current schema is also simple. It does not yet include user accounts, supplier master records, payment tracking history, line-item tables, audit logs or dashboard-ready summary views.
+
+---
+
 ## Next Step
 
-The next development step is to add database storage so InvoicePie can save parsed invoices, validation results and duplicate detection outputs in a structured database instead of relying only on JSON files.
+The next development step is to build a simple dashboard so InvoicePie can display invoice totals, supplier spend, payment status, validation issues and duplicate warnings in a more readable way.
 
-Milestone 6 will only be added to this log after database storage has been implemented, tested and committed.
+Milestone 7 will only be added to this log after the dashboard has been implemented, tested and committed.
