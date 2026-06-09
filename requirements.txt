@@ -3,3 +3,4 @@ pdfplumber
 pandas
 pydantic
 python-dateutil
+streamlit

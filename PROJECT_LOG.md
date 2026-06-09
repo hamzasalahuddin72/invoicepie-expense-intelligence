@@ -18,7 +18,7 @@ The aim of this project is to build a realistic end-to-end document intelligence
 
 ## Current Project Status
 
-InvoicePie currently has a working local Python environment, a generated fake sample invoice PDF, PDF text extraction using PyMuPDF, structured invoice parsing into JSON, invoice validation report generation, duplicate invoice detection, and SQLite database storage.
+InvoicePie currently has a working local Python environment, a generated fake sample invoice PDF, PDF text extraction using PyMuPDF, structured invoice parsing into JSON, invoice validation report generation, duplicate invoice detection, SQLite database storage, and a Streamlit dashboard for expense insights.
 
 The current completed pipeline is:
 
@@ -36,6 +36,8 @@ Invoice validation report
 Duplicate detection report
 ↓
 SQLite database storage
+↓
+Streamlit dashboard
 ```
 
 ---
@@ -340,8 +342,74 @@ The current schema is also simple. It does not yet include user accounts, suppli
 
 ---
 
+---
+
+# Milestone 7 — Dashboard and Expense Insights
+
+## What Was Built
+
+The file `app/dashboard.py` was implemented using Streamlit to display the processed InvoicePie data in a simple dashboard.
+
+The dashboard reads from the local SQLite database at:
+
+```text
+data/database/invoicepie.db
+```
+
+It currently displays:
+
+```text
+summary metrics
+total invoice count
+total spend
+unpaid invoice count
+validation issue count
+duplicate match count
+spend by category
+spend by supplier
+stored invoice records
+validation reports
+duplicate invoice warnings
+```
+
+The dashboard was tested locally using:
+
+```text
+python -m streamlit run app/dashboard.py
+```
+
+The current dashboard successfully shows 3 invoice records, £2,760.00 total spend, 3 unpaid invoices, 0 validation issues and 1 duplicate match.
+
+## Why This Matters
+
+The dashboard makes the project easier to understand because it turns processed invoice data into visible business insight.
+
+Before this milestone, InvoicePie produced JSON files and database records. Those outputs are useful technically, but they are not easy for a business user to review. The dashboard gives users a clearer view of invoice totals, supplier spend, payment status, validation results and duplicate warnings.
+
+This milestone helps connect the backend document-processing pipeline to a user-facing reporting layer.
+
+## What I Learned
+
+This step helped me understand how database records can be turned into useful dashboard views using pandas and Streamlit.
+
+I also learned that the way data is presented matters. A working backend is important, but employers and users need to quickly see what the system does and why it is useful.
+
+The dashboard also made the earlier pipeline easier to verify because the invoice records, validation report and duplicate match can now be checked visually in one place.
+
+## Current Limitations
+
+The dashboard is currently a local Streamlit app and is not deployed online yet.
+
+It reads from a local SQLite database, so the database must be generated first by running `python app/database.py`.
+
+The current dashboard uses a small sample dataset, so the charts are simple. More invoice records will be needed later to make the spend insights more realistic.
+
+The dashboard also does not yet include filters, upload functionality, authentication, export buttons or AI-assisted natural-language invoice review.
+
+---
+
 ## Next Step
 
-The next development step is to build a simple dashboard so InvoicePie can display invoice totals, supplier spend, payment status, validation issues and duplicate warnings in a more readable way.
+The next development step is to improve the GitHub presentation of the project by updating the README with setup instructions, architecture, screenshots, current features, limitations and future improvements.
 
-Milestone 7 will only be added to this log after the dashboard has been implemented, tested and committed.
+Milestone 8 will only be added to this log after the README and project documentation have been improved, tested and committed.
