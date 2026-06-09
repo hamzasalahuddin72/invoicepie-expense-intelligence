@@ -169,10 +169,40 @@ It may not work well yet with messy layouts, scanned invoices, table-heavy invoi
 
 These limitations will be improved later with stronger parsing logic, validation rules, more sample invoice formats, OCR support, and possibly AI-assisted extraction.
 
----
+---rnrn---
 
-## Next Step
+# Milestone 4 — Invoice Validation
 
-The next development step is to build `app/validator.py` so InvoicePie can check whether required invoice fields are present, whether dates and amounts are valid, and whether the parsed invoice is ready for business processing.
+## What Was Built
 
-Milestone 4 will only be added to this log after the validator has been implemented, tested and committed.
+The file `app/validator.py` was implemented to check whether parsed invoice data is complete, consistent and ready for business processing.
+
+The validator currently checks whether required fields are present, whether invoice and due dates are valid, whether the due date is not earlier than the invoice date, whether subtotal, VAT and total amount values are valid, whether subtotal plus VAT matches the total amount, and whether the payment status uses an expected value.
+
+The validation result is saved as a structured JSON report in:
+
+```text
+data/validation_reports/hotel_invoice_001_validation.json
+Why This Matters
+
+Validation is an important step because extracted invoice data cannot automatically be trusted. Even if the parser successfully finds invoice fields, the values still need to be checked before they can be used for payment decisions, dashboards, exports or duplicate detection.
+
+This milestone adds a basic business-control layer to InvoicePie. The system can now report whether an invoice appears complete, whether it needs review, and which issues were found.
+
+What I Learned
+
+This step helped me understand that invoice intelligence is not only about extraction and parsing. A useful invoice-processing system also needs validation checks that protect a business from missing fields, incorrect totals, invalid dates and unclear payment information.
+
+I also learned how validation reports make the system more explainable. Instead of only returning a pass or fail result, the report lists each issue with a field name, severity and message. This makes the output easier for a user or reviewer to understand.
+
+Current Limitations
+
+The validator currently uses rule-based checks. This is useful for predictable invoice issues, but it does not yet detect more complex risks such as duplicate invoices, unusual supplier behaviour, suspicious price changes or inconsistent line-item details.
+
+The system also depends on the parser producing clean structured fields. If the parser misses a value or extracts it incorrectly, the validator can only check the data it receives.
+
+Next Step
+
+The next development step is to build duplicate detection so InvoicePie can identify possible duplicate invoices using supplier name, invoice number, invoice date and total amount.
+
+Milestone 5 will only be added to this log after duplicate detection has been implemented, tested and committed.
