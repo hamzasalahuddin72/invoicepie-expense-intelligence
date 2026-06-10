@@ -1,9 +1,9 @@
-﻿<table>
-  <tr>
-    <td width="120">
+﻿<table border="none!important">
+  <tr border="none!important">
+    <td width="120" border="none!important">
       <img src="docs/assets/invoicepie-app-icon.png" alt="InvoicePie app icon" width="105"/>
     </td>
-    <td>
+    <td border="none!important">
       <h1>InvoicePie — AI-Powered Invoice and Expense Intelligence</h1>
       <p>
         AI-powered invoice and expense intelligence system for extracting structured data from invoice PDFs,
@@ -12,11 +12,6 @@
     </td>
   </tr>
 </table>
-<style>
-td, th {
-   border: none!important;
-}
-</style>
 [![InvoicePie Live Demo](docs/assets/invoicepie-live-badge.svg)](https://invoicepie.streamlit.app/)
 
 **Live Demo:** https://invoicepie.streamlit.app/
