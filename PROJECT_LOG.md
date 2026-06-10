@@ -18,7 +18,7 @@ The aim of this project is to build a realistic end-to-end document intelligence
 
 ## Current Project Status
 
-InvoicePie currently has a working local Python environment, a multi-invoice sample dataset, PDF text extraction using PyMuPDF, batch invoice parsing into JSON, batch validation report generation, duplicate invoice detection, SQLite database storage, a Streamlit dashboard for expense insights, single-invoice upload processing, dashboard filters, review sections, and improved GitHub project documentation.
+InvoicePie currently has a working local Python environment, a multi-invoice sample dataset, PDF text extraction using PyMuPDF, batch invoice parsing into JSON, batch validation report generation, duplicate invoice detection, SQLite database storage, a Streamlit dashboard for expense insights, single-invoice upload processing, dashboard filters, review sections, automated tests, and improved GitHub project documentation.
 
 The current completed pipeline is:
 
@@ -42,6 +42,8 @@ Streamlit dashboard
 Single-invoice upload processing
 ↓
 Dashboard filters and review UI
+↓
+Automated tests
 ↓
 GitHub README documentation
 ```
@@ -636,8 +638,67 @@ The dashboard is also still running locally and has not yet been deployed online
 
 ---
 
+---
+
+# Milestone 12 — Automated Tests for Core Invoice Logic
+
+## What Was Built
+
+Automated tests were added for the main InvoicePie processing modules.
+
+The test suite currently covers:
+
+```text
+parser field extraction
+parser support for invoice label variations
+valid invoice validation
+wrong total validation
+missing VAT number warning
+invalid payment status warning
+amount comparison
+likely duplicate detection
+different invoice non-match
+```
+
+The following test files were added:
+
+```text
+tests/conftest.py
+tests/test_parser.py
+tests/test_validator.py
+tests/test_duplicate_detector.py
+```
+
+The project now uses `pytest` to run the automated test suite.
+
+## Why This Matters
+
+Automated tests make the project safer to extend.
+
+As InvoicePie grows, future changes to parsing, validation, duplicate detection or AI-assisted extraction could accidentally break existing behaviour. Tests give a quick way to check that the core logic still works.
+
+This milestone improves the engineering quality of the project because it shows that the system is not only working manually, but has repeatable checks for important behaviours.
+
+## What I Learned
+
+This step helped me understand how tests protect a growing codebase.
+
+I learned that small focused tests are useful for checking business rules, such as whether a wrong total triggers review, whether a missing VAT number creates a warning, and whether two matching invoices are flagged as duplicates.
+
+I also learned that testing helps document expected behaviour. Anyone reviewing the project can look at the tests to understand what the parser, validator and duplicate detector are supposed to do.
+
+## Current Limitations
+
+The current tests focus on core logic only.
+
+They do not yet test the Streamlit dashboard, file upload workflow, database import process, OCR behaviour or AI-assisted extraction.
+
+The test dataset is still small, so more edge cases can be added later as new features are introduced.
+
+---
+
 ## Next Step
 
-The next development step is to add automated tests for the parser, validator and duplicate detector so the core invoice-processing logic can be checked reliably as the project grows.
+The next development step is to add AI-assisted extraction for messy invoice text so InvoicePie can begin handling less predictable invoice formats beyond rule-based label matching.
 
-Milestone 12 will only be added to this log after automated tests have been implemented, run successfully and committed.
+Milestone 13 will only be added to this log after AI-assisted extraction has been implemented, tested and committed.
