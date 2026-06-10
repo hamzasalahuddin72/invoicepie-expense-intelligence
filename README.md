@@ -1,5 +1,9 @@
 ﻿# InvoicePie — AI-Powered Invoice and Expense Intelligence
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://invoicepie.streamlit.app/)
+
+**Live Demo:** https://invoicepie.streamlit.app/
+
 InvoicePie is an AI-powered invoice and expense intelligence system that extracts structured data from invoice PDFs, validates missing or suspicious fields, detects duplicate invoices, stores processed records in a database, and presents expense insights through a dashboard.
 
 This project is being built as a practical portfolio project to demonstrate applied AI engineering, document processing, Python development, database design, validation logic, duplicate detection, and dashboard reporting.
@@ -413,3 +417,4 @@ clear project documentation
 ```
 
 InvoicePie is intended to demonstrate how raw invoice documents can be turned into structured, validated and reviewable business data.
+

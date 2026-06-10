@@ -18,7 +18,13 @@ The aim of this project is to build a realistic end-to-end document intelligence
 
 ## Current Project Status
 
-InvoicePie currently has a working local Python environment, a multi-invoice sample dataset, PDF text extraction using PyMuPDF, batch invoice parsing into JSON, batch validation report generation, duplicate invoice detection, SQLite database storage, a Streamlit dashboard for expense insights, single-invoice upload processing, dashboard filters, review sections, automated tests, AI-assisted extraction prototyping, and improved GitHub project documentation.
+InvoicePie currently has a deployed Streamlit app, a multi-invoice sample dataset, PDF text extraction using PyMuPDF, batch invoice parsing into JSON, batch validation report generation, duplicate invoice detection, SQLite database storage, dashboard filters, single-invoice upload processing, automated tests, AI-assisted extraction prototyping, and improved GitHub documentation.
+
+Live demo:
+
+```text
+https://invoicepie.streamlit.app/
+```
 
 The current completed pipeline is:
 
@@ -46,6 +52,8 @@ Dashboard filters and review UI
 Automated tests
 ↓
 AI-assisted messy text extraction prototype
+↓
+Deployed Streamlit app
 ↓
 GitHub README documentation
 ```
@@ -757,8 +765,56 @@ The feature currently works with text input only. It does not yet handle scanned
 
 ---
 
+---
+
+# Milestone 14 — Deployment
+
+## What Was Built
+
+InvoicePie was prepared and deployed as a hosted Streamlit application.
+
+A root entrypoint file was added:
+
+```text
+streamlit_app.py
+```
+
+This file makes the app easier to run on Streamlit Community Cloud by importing and launching the main dashboard application.
+
+The deployed app is available at:
+
+```text
+https://invoicepie.streamlit.app/
+```
+
+The dashboard was also updated so the SQLite database can be created and populated automatically when the app runs in a deployment environment where the local database file is not committed to GitHub.
+
+## Why This Matters
+
+Deployment is an important milestone because it makes InvoicePie easier to demonstrate.
+
+Before deployment, the project had to be run locally from the command line. With a hosted Streamlit app, the project can be shared through a live link, making it more useful for GitHub visitors, recruiters, employers and interview discussions.
+
+This milestone also shows practical understanding of deployment preparation, app entrypoints, dependency handling and environment differences between local development and hosted apps.
+
+## What I Learned
+
+This step helped me understand that deployment is not only about uploading code. A deployed app needs a clear entrypoint, committed dependencies, safe local file handling and logic for generated files such as the SQLite database.
+
+I also learned why files like local databases and uploaded PDFs should usually not be committed to GitHub, and why the app should be able to rebuild its local runtime state when needed.
+
+## Current Limitations
+
+The deployed app still uses local SQLite storage inside the Streamlit runtime. This is suitable for a portfolio demo, but it is not a production database setup.
+
+Uploaded files and generated runtime data are not designed for long-term persistent storage on the hosted app.
+
+The app also does not yet include authentication, cloud object storage, a managed database, production monitoring or a full OCR pipeline.
+
+---
+
 ## Next Step
 
-The next development step is to deploy the project so the dashboard can be accessed through a hosted link rather than only running locally.
+The next development step is to polish the final portfolio presentation by adding dashboard screenshots, improving the README visuals, and writing concise CV and LinkedIn project descriptions.
 
-Milestone 14 will only be added to this log after deployment has been completed, tested and committed.
+Future development can also continue with a managed database, OCR support, stronger AI-assisted extraction, and production-style deployment improvements.
