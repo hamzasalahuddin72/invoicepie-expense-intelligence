@@ -1,4 +1,4 @@
-﻿<table cellspacing="0" cellpadding="0">
+﻿<table>
   <tr>
     <td width="120">
       <img src="docs/assets/invoicepie-app-icon.png" alt="InvoicePie app icon" width="105"/>
@@ -12,6 +12,11 @@
     </td>
   </tr>
 </table>
+<style>
+td, th {
+   border: none!important;
+}
+</style>
 [![InvoicePie Live Demo](docs/assets/invoicepie-live-badge.svg)](https://invoicepie.streamlit.app/)
 
 **Live Demo:** https://invoicepie.streamlit.app/
