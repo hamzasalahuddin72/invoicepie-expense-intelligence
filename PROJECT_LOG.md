@@ -18,7 +18,7 @@ The aim of this project is to build a realistic end-to-end document intelligence
 
 ## Current Project Status
 
-InvoicePie currently has a working local Python environment, a multi-invoice sample dataset, PDF text extraction using PyMuPDF, batch invoice parsing into JSON, batch validation report generation, duplicate invoice detection, SQLite database storage, a Streamlit dashboard for expense insights, improved GitHub project documentation, and single-invoice upload processing.
+InvoicePie currently has a working local Python environment, a multi-invoice sample dataset, PDF text extraction using PyMuPDF, batch invoice parsing into JSON, batch validation report generation, duplicate invoice detection, SQLite database storage, a Streamlit dashboard for expense insights, single-invoice upload processing, dashboard filters, review sections, and improved GitHub project documentation.
 
 The current completed pipeline is:
 
@@ -40,6 +40,8 @@ SQLite database storage
 Streamlit dashboard
 ↓
 Single-invoice upload processing
+↓
+Dashboard filters and review UI
 ↓
 GitHub README documentation
 ```
@@ -589,8 +591,67 @@ The feature works best with text-based PDFs and does not yet support scanned inv
 
 ---
 
+---
+
+# Milestone 11 — Dashboard Filters and Better Review UI
+
+## What Was Built
+
+The Streamlit dashboard was improved with interactive filters and clearer invoice review sections.
+
+The dashboard now supports filtering invoice records by:
+
+```text
+supplier
+category
+payment status
+validation status
+duplicate risk
+invoice number or supplier search
+```
+
+The dashboard metrics now update based on the selected filters.
+
+A new review section was added to highlight:
+
+```text
+invoices needing review
+unpaid or pending invoices
+duplicate risk records
+```
+
+The duplicate warnings table was also improved so duplicate matches are shown in relation to the currently filtered invoice records.
+
+## Why This Matters
+
+This milestone improves the dashboard from a basic reporting page into a more useful review tool.
+
+As the invoice dataset grows, users need a way to quickly find invoices that need attention. Filters make it easier to answer practical business questions such as which invoices are unpaid, which suppliers have the highest spend, which invoices failed validation, and which invoices may be duplicates.
+
+This makes InvoicePie more realistic as a business-facing invoice review system.
+
+## What I Learned
+
+This step helped me understand how dashboard usability affects the value of a data product.
+
+The earlier dashboard displayed useful data, but it showed everything at once. Adding filters and review sections made the system easier to explore and made the validation and duplicate detection outputs more actionable.
+
+I also learned how to combine invoice records with validation and duplicate information so each invoice can be reviewed with more context.
+
+## Current Limitations
+
+The filters currently work with the local SQLite dataset only.
+
+The dashboard does not yet save user review decisions, comments, approval status or audit history.
+
+The duplicate match explanations are still basic and do not yet show the full reasons in a polished user-friendly format.
+
+The dashboard is also still running locally and has not yet been deployed online.
+
+---
+
 ## Next Step
 
-The next development step is to add dashboard filters and a better review UI so users can filter invoice records by supplier, category, payment status, validation status and duplicate risk.
+The next development step is to add automated tests for the parser, validator and duplicate detector so the core invoice-processing logic can be checked reliably as the project grows.
 
-Milestone 11 will only be added to this log after dashboard filters and the improved review interface have been implemented, tested and committed.
+Milestone 12 will only be added to this log after automated tests have been implemented, run successfully and committed.
