@@ -129,7 +129,7 @@ def show_upload_processor() -> None:
             st.subheader("Duplicate Check")
 
             if duplicate_matches:
-                st.warning(f"{len(duplicate_matches)} possible duplicate match found.")
+                st.warning(f"{len(duplicate_matches)} possible duplicate match(es) found.")
                 st.json(duplicate_matches)
             else:
                 st.success("No duplicate matches found against existing records.")
