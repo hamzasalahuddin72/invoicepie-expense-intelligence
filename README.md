@@ -5,10 +5,6 @@
     </td>
     <td>
       <h1>InvoicePie — AI-Powered Invoice and Expense Intelligence</h1>
-      <p>
-        AI-powered invoice and expense intelligence system for extracting structured data from invoice PDFs,
-        validating missing or suspicious fields, detecting duplicate invoices, and presenting expense insights.
-      </p>
     </td>
   </tr>
 </table>
