@@ -219,8 +219,6 @@ The system also depends on the parser producing clean structured fields. If the 
 
 ---
 
----
-
 # Milestone 5 — Duplicate Invoice Detection
 
 ## What Was Built
@@ -271,8 +269,6 @@ The duplicate detector currently uses rule-based scoring. This works well for cl
 It may not detect more complex duplicates where supplier names are slightly different, invoice numbers have formatting differences, dates are missing, or totals vary because of partial payments or currency conversion.
 
 The current test records are also small and simple. More sample invoices will be needed later to test realistic duplicate and near-duplicate cases.
-
----
 
 ---
 
@@ -348,8 +344,6 @@ The current schema is also simple. It does not yet include user accounts, suppli
 
 ---
 
----
-
 # Milestone 7 — Dashboard and Expense Insights
 
 ## What Was Built
@@ -414,8 +408,6 @@ The dashboard also does not yet include filters, upload functionality, authentic
 
 ---
 
----
-
 # Milestone 8 — README and GitHub Presentation
 
 ## What Was Built
@@ -463,8 +455,6 @@ The README explains the current project well, but it does not yet include actual
 The project also does not yet have automated tests, deployment instructions, architecture diagrams or a hosted demo link.
 
 These will be added later as the project becomes more complete.
-
----
 
 ---
 
@@ -536,8 +526,6 @@ The batch workflow currently processes local files only and does not yet include
 
 ---
 
----
-
 # Milestone 10 — File Upload and Single-Invoice Processing
 
 ## What Was Built
@@ -588,8 +576,6 @@ The upload feature currently supports single PDF processing only.
 The uploaded invoice is processed and displayed in the app, but it is not yet permanently added to the SQLite database.
 
 The feature works best with text-based PDFs and does not yet support scanned invoices, OCR, multiple-file upload, authentication, audit history or cloud storage.
-
----
 
 ---
 
