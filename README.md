@@ -1,9 +1,9 @@
-﻿<table>
-  <tr>
-    <td width="150">
+﻿<table style="border: none;">
+  <tr style="border: none;">
+    <td width="150" style="border: none;">
       <img src="docs/assets/invoicepie-app-icon.png" alt="InvoicePie app icon" width="110"/>
     </td>
-    <td>
+    <td style="border: none;">
       <h1>InvoicePie — AI-Powered Invoice and Expense Intelligence</h1>
     </td>
   </tr>
