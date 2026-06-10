@@ -1,0 +1,15 @@
+{
+    "supplier_name": "Brighton Digital Services Ltd",
+    "invoice_number": "BDS-9081",
+    "invoice_date": "2026-06-09",
+    "due_date": "2026-06-24",
+    "vat_number": "GB777888999",
+    "subtotal": 420.0,
+    "vat_amount": 84.0,
+    "total_amount": 504.0,
+    "payment_status": "Unpaid",
+    "category": "Software",
+    "currency": "GBP",
+    "source_file": "messy_invoice_001.txt",
+    "extraction_method": "local_ai_assisted_prototype"
+}

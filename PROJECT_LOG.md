@@ -18,7 +18,7 @@ The aim of this project is to build a realistic end-to-end document intelligence
 
 ## Current Project Status
 
-InvoicePie currently has a working local Python environment, a multi-invoice sample dataset, PDF text extraction using PyMuPDF, batch invoice parsing into JSON, batch validation report generation, duplicate invoice detection, SQLite database storage, a Streamlit dashboard for expense insights, single-invoice upload processing, dashboard filters, review sections, automated tests, and improved GitHub project documentation.
+InvoicePie currently has a working local Python environment, a multi-invoice sample dataset, PDF text extraction using PyMuPDF, batch invoice parsing into JSON, batch validation report generation, duplicate invoice detection, SQLite database storage, a Streamlit dashboard for expense insights, single-invoice upload processing, dashboard filters, review sections, automated tests, AI-assisted extraction prototyping, and improved GitHub project documentation.
 
 The current completed pipeline is:
 
@@ -44,6 +44,8 @@ Single-invoice upload processing
 Dashboard filters and review UI
 ↓
 Automated tests
+↓
+AI-assisted messy text extraction prototype
 ↓
 GitHub README documentation
 ```
@@ -697,8 +699,66 @@ The test dataset is still small, so more edge cases can be added later as new fe
 
 ---
 
+---
+
+# Milestone 13 — AI-Assisted Extraction for Messy Invoice Text
+
+## What Was Built
+
+An AI-assisted extraction prototype was added to help InvoicePie handle messy invoice text that does not follow the original clean invoice template.
+
+The new file `app/ai_assisted_extractor.py` includes:
+
+```text
+messy invoice text reading
+AI extraction prompt generation
+local AI-assisted extraction prototype
+field normalisation into the InvoicePie JSON schema
+JSON output saving
+```
+
+A messy invoice text sample was added at:
+
+```text
+data/messy_inputs/messy_invoice_001.txt
+```
+
+The AI-assisted extraction output is saved at:
+
+```text
+data/ai_extracted_json/messy_invoice_001_ai.json
+```
+
+Automated tests were also added for the AI-assisted extraction prompt and messy-label extraction behaviour.
+
+## Why This Matters
+
+This milestone begins moving InvoicePie beyond fixed-template invoice parsing.
+
+The original parser works best when invoice fields use predictable labels such as `Invoice Number`, `Due Date` and `Total`. Real invoices often use different wording such as `BILL REF`, `Issued`, `Please pay before` or `Balance payable`.
+
+This milestone introduces an AI-assisted extraction layer that prepares the project for future LLM-based extraction while still keeping the current implementation testable and transparent.
+
+## What I Learned
+
+This step helped me understand the difference between rule-based extraction and AI-assisted extraction.
+
+Rule-based parsing is fast, explainable and reliable when labels are predictable. However, it becomes harder to maintain as invoice wording becomes more varied.
+
+AI-assisted extraction can help with messy text because it can be guided to return data in a fixed JSON schema. This milestone also showed the importance of normalising AI-style output back into the same structure used by the rest of the system.
+
+## Current Limitations
+
+The current AI-assisted extraction feature is a local prototype and does not call a live AI API.
+
+It prepares a structured prompt and demonstrates messy-label extraction locally, but a future version would need to connect to an LLM provider or local model to perform true AI-assisted extraction on more complex invoice layouts.
+
+The feature currently works with text input only. It does not yet handle scanned invoices, OCR, images, multi-page documents or table-heavy PDFs.
+
+---
+
 ## Next Step
 
-The next development step is to add AI-assisted extraction for messy invoice text so InvoicePie can begin handling less predictable invoice formats beyond rule-based label matching.
+The next development step is to deploy the project so the dashboard can be accessed through a hosted link rather than only running locally.
 
-Milestone 13 will only be added to this log after AI-assisted extraction has been implemented, tested and committed.
+Milestone 14 will only be added to this log after deployment has been completed, tested and committed.
