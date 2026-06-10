@@ -18,7 +18,7 @@ The aim of this project is to build a realistic end-to-end document intelligence
 
 ## Current Project Status
 
-InvoicePie currently has a working local Python environment, a multi-invoice sample dataset, PDF text extraction using PyMuPDF, batch invoice parsing into JSON, batch validation report generation, duplicate invoice detection, SQLite database storage, a Streamlit dashboard for expense insights, and improved GitHub project documentation.
+InvoicePie currently has a working local Python environment, a multi-invoice sample dataset, PDF text extraction using PyMuPDF, batch invoice parsing into JSON, batch validation report generation, duplicate invoice detection, SQLite database storage, a Streamlit dashboard for expense insights, improved GitHub project documentation, and single-invoice upload processing.
 
 The current completed pipeline is:
 
@@ -38,6 +38,8 @@ Duplicate detection report
 SQLite database storage
 ↓
 Streamlit dashboard
+↓
+Single-invoice upload processing
 ↓
 GitHub README documentation
 ```
@@ -532,8 +534,63 @@ The batch workflow currently processes local files only and does not yet include
 
 ---
 
+---
+
+# Milestone 10 — File Upload and Single-Invoice Processing
+
+## What Was Built
+
+The Streamlit dashboard was extended with a new `Upload Invoice` tab.
+
+This feature allows a user to upload a single text-based invoice PDF through the browser. InvoicePie then processes the uploaded file using the existing document-processing pipeline.
+
+The upload workflow currently performs:
+
+```text
+PDF upload
+text extraction
+structured field parsing
+invoice validation
+duplicate comparison against existing records
+result display inside the Streamlit app
+```
+
+Uploaded files are saved locally in:
+
+```text
+data/uploaded_invoices/
+```
+
+Uploaded PDF files are ignored by Git so private or test documents are not accidentally committed to the repository.
+
+## Why This Matters
+
+This milestone makes InvoicePie feel more like a usable application rather than only a collection of command-line scripts.
+
+Before this feature, the system relied on local scripts to process sample invoices. With file upload, a user can interact with the project through the dashboard and immediately see parsed fields, validation results and duplicate warnings.
+
+This improves the project’s demonstration value for employers because it shows user-facing workflow design, file handling, Streamlit integration and reuse of backend processing functions.
+
+## What I Learned
+
+This step helped me understand how to connect backend processing logic to a user-facing interface.
+
+I also learned that a practical document intelligence system needs more than extraction and validation scripts. It needs a workflow where users can provide documents, receive clear results and understand whether an invoice passed, needs review or may be a duplicate.
+
+The feature also reinforced the value of keeping the parser, validator and duplicate detector modular. Because those functions were already separated, they could be reused inside the Streamlit upload workflow.
+
+## Current Limitations
+
+The upload feature currently supports single PDF processing only.
+
+The uploaded invoice is processed and displayed in the app, but it is not yet permanently added to the SQLite database.
+
+The feature works best with text-based PDFs and does not yet support scanned invoices, OCR, multiple-file upload, authentication, audit history or cloud storage.
+
+---
+
 ## Next Step
 
-The next development step is to add automated tests for the parser, validator and duplicate detector so the core invoice-processing logic can be checked reliably as the project grows.
+The next development step is to add dashboard filters and a better review UI so users can filter invoice records by supplier, category, payment status, validation status and duplicate risk.
 
-Milestone 10 will only be added to this log after automated tests have been implemented, run successfully and committed.
+Milestone 11 will only be added to this log after dashboard filters and the improved review interface have been implemented, tested and committed.
