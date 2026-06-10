@@ -1,5 +1,9 @@
 ﻿# InvoicePie — AI-Powered Invoice and Expense Intelligence
 
+<p align="center">
+  <img src="docs/assets/invoicepie-app-icon.png" alt="InvoicePie app icon" width="180"/>
+</p>
+
 [![InvoicePie Live Demo](docs/assets/invoicepie-live-badge.svg)](https://invoicepie.streamlit.app/)
 
 **Live Demo:** https://invoicepie.streamlit.app/
@@ -417,6 +421,7 @@ clear project documentation
 ```
 
 InvoicePie is intended to demonstrate how raw invoice documents can be turned into structured, validated and reviewable business data.
+
 
 
 
