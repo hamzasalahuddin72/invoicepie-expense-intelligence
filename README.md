@@ -1,4 +1,4 @@
-﻿<table border-collapse:collapse>
+﻿<table cellspacing="0" cellpadding="0">
   <tr>
     <td width="120">
       <img src="docs/assets/invoicepie-app-icon.png" alt="InvoicePie app icon" width="105"/>
