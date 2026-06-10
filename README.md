@@ -12,6 +12,7 @@
     </td>
   </tr>
 </table>
+
 [![InvoicePie Live Demo](docs/assets/invoicepie-live-badge.svg)](https://invoicepie.streamlit.app/)
 
 **Live Demo:** https://invoicepie.streamlit.app/
