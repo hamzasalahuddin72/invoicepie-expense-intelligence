@@ -1,7 +1,6 @@
-<img src="docs/assets/invoicepie-app-icon.png" alt="InvoicePie app icon" align="left" width="95"/>
+<img src="docs/assets/invoicepie-app-icon.png" alt="InvoicePie app icon" align="left" width="75"/>
 
 # InvoicePie — AI-Powered Invoice and Expense Intelligence
-
 
 AI-powered invoice and expense intelligence system for extracting structured data from invoice PDFs, validating missing or suspicious fields, detecting duplicate invoices, and presenting expense insights.
 
