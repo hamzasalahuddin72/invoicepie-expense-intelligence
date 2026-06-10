@@ -1,9 +1,9 @@
-﻿<table border="none!important">
-  <tr border="none!important">
-    <td width="120" border="none!important">
+﻿<table>
+  <tr>
+    <td width="120">
       <img src="docs/assets/invoicepie-app-icon.png" alt="InvoicePie app icon" width="105"/>
     </td>
-    <td border="none!important">
+    <td>
       <h1>InvoicePie — AI-Powered Invoice and Expense Intelligence</h1>
       <p>
         AI-powered invoice and expense intelligence system for extracting structured data from invoice PDFs,
