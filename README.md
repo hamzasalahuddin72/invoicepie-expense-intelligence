@@ -2,6 +2,7 @@
 
 # InvoicePie — AI-Powered Invoice and Expense Intelligence
 
+
 AI-powered invoice and expense intelligence system for extracting structured data from invoice PDFs, validating missing or suspicious fields, detecting duplicate invoices, and presenting expense insights.
 
 [![InvoicePie Live Demo](docs/assets/invoicepie-live-badge.svg)](https://invoicepie.streamlit.app/)
