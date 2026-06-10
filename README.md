@@ -1,6 +1,7 @@
 ﻿<table>
   <tr>
     <td width="150">
+      <img src="docs/assets/invoicepie-app-icon.png" alt="InvoicePie app icon" width="120"/>
     </td>
     <td>
       <h1>InvoicePie — AI-Powered Invoice and Expense Intelligence</h1>
