@@ -7,6 +7,14 @@ import streamlit as st
 from parser import parse_invoice_pdf
 from validator import validate_invoice
 from duplicate_detector import load_invoice_records, compare_invoice_pair
+from database import (
+    connect_database,
+    create_tables,
+    reset_tables,
+    import_invoice_records,
+    import_validation_reports,
+    import_duplicate_reports,
+)
 
 
 DATABASE_PATH = Path("data/database/invoicepie.db")
@@ -543,17 +551,32 @@ def show_duplicate_matches(duplicate_matches: pd.DataFrame, filtered_invoices: p
             st.write(f"Similarity score: {match.get('similarity_score')}")
 
 
+def ensure_database_exists() -> None:
+    """
+    Create and populate the local SQLite database if it does not already exist.
+
+    This helps the app run correctly in deployment environments where the local
+    database file is not committed to GitHub.
+    """
+    if DATABASE_PATH.exists():
+        return
+
+    connection = connect_database(str(DATABASE_PATH))
+    create_tables(connection)
+    reset_tables(connection)
+    import_invoice_records(connection, "data/extracted_json")
+    import_validation_reports(connection, "data/validation_reports")
+    import_duplicate_reports(connection, "data/duplicate_reports")
+    connection.close()
+
+
 def show_existing_dashboard() -> None:
     """
     Display existing database-backed dashboard with filters and review UI.
     """
     st.header("Expense Intelligence Dashboard")
 
-    if not DATABASE_PATH.exists():
-        st.warning(
-            "Database file not found. Run `python app/database.py` first to create and populate the SQLite database."
-        )
-        st.stop()
+    ensure_database_exists()
 
     if st.button("Refresh dashboard data"):
         st.cache_data.clear()
@@ -622,3 +645,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
